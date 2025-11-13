@@ -1,7 +1,9 @@
 import React, { useContext } from "react";
 import { Route, Routes } from "react-router-dom";
+import HowItWorks from "./components/home/HowItWorks";
 import { AuthContext } from "./context/AuthContext";
 import DashboardLayout from "./layouts/DashboardLayout";
+import PublicLayout from "./layouts/PublicLayout";
 import SettingsLayout from "./layouts/SettingsLayout";
 import ConnectionsPage from "./pages/dashboard/ConnectionsPage";
 import ExplorePage from "./pages/dashboard/ExplorePage";
@@ -11,7 +13,10 @@ import MessagesPage from "./pages/dashboard/MessagesPage";
 import NotificationsPage from "./pages/dashboard/NotificationsPage";
 import ProfilePage from "./pages/dashboard/ProfilePage";
 import SearchPage from "./pages/dashboard/SearchPage";
+import AboutUs from "./pages/public/AboutUs";
 import Home from "./pages/public/Home";
+import OurStory from "./pages/public/OurStory";
+import Safety from "./pages/public/Safety";
 import Account from "./pages/settings/Account";
 import Appearance from "./pages/settings/Appearance";
 import Emails from "./pages/settings/Emails";
@@ -27,7 +32,15 @@ const App: React.FC = () => {
   return (
     <div>
       <Routes>
-        {!isAuthenticated && <Route path="/" element={<Home />} />}
+        {!isAuthenticated && (
+          <Route path="/" element={<PublicLayout />}>
+            <Route index element={<Home />} />
+            <Route path="safety" element={<Safety />} />
+            <Route path="about-us" element={<AboutUs />} />
+            <Route path="our-story" element={<OurStory />} />
+            <Route path="how-it-works" element={<HowItWorks />} />
+          </Route>
+        )}
         {isAuthenticated && (
           <Route element={<ProtectedRoute />}>
             <Route path="/" element={<DashboardLayout />}>
