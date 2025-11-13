@@ -25,12 +25,14 @@ import Profile from "./pages/settings/Profile";
 import ScheduledReminders from "./pages/settings/ScheduledReminders";
 import Sessions from "./pages/settings/Sessions";
 import ProtectedRoute from "./routes/ProtectedRoutes";
+import ScrollToTop from "./utils/ScrollToTop";
 
 const App: React.FC = () => {
   const { isAuthenticated } = useContext(AuthContext);
 
   return (
     <div>
+      <ScrollToTop />
       <Routes>
         {!isAuthenticated && (
           <Route path="/" element={<PublicLayout />}>
