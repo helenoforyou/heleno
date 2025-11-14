@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { Route, Routes } from "react-router-dom";
-import HowItWorks from "./components/home/HowItWorks";
 import { AuthContext } from "./context/AuthContext";
 import DashboardLayout from "./layouts/DashboardLayout";
 import PublicLayout from "./layouts/PublicLayout";
@@ -37,10 +36,12 @@ const App: React.FC = () => {
         {!isAuthenticated && (
           <Route path="/" element={<PublicLayout />}>
             <Route index element={<Home />} />
-            <Route path="safety" element={<Safety />} />
-            <Route path="about-us" element={<AboutUs />} />
-            <Route path="our-story" element={<OurStory />} />
-            <Route path="how-it-works" element={<HowItWorks />} />
+            <Route path="company">
+              <Route path="about" element={<AboutUs />} />
+              <Route path="story" element={<OurStory />} />
+            </Route>
+            {/* <Route path="discover/how-it-works" element={<HowItWorks />} /> */}
+            <Route path="trust-and-safety" element={<Safety />} />
           </Route>
         )}
         {isAuthenticated && (

@@ -4,9 +4,9 @@ import Header from "../components/common/Header";
 
 const PublicLayout = () => {
   return (
-    <div>
+    <div className="flex flex-col justify-between min-h-screen">
       <Header />
-      <main>
+      <main className="flex flex-1 flex-col">
         <Outlet />
       </main>
       <Footer />

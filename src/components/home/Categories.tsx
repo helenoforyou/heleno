@@ -1,111 +1,129 @@
 "use client";
 
-import { motion } from "motion/react";
-import { Heart, Coffee, Briefcase, HeartCrack, Gamepad2, Wind } from "lucide-react";
+import {
+  Briefcase,
+  Coffee,
+  Gamepad2,
+  Heart,
+  HeartCrack,
+  Wind
+} from "lucide-react";
+import ScrollReveal from "../../utils/ScrollReveal";
 
 const categories = [
   {
     icon: Heart,
     title: "Emotional Support",
-    description: "Talk through your feelings with someone who understands",
-    color: "from-pink-500 to-rose-500",
+    description:
+      "Talk through your feelings with someone who truly understands.",
+    color: "from-pink-500 to-rose-500"
   },
   {
     icon: Coffee,
     title: "Friendly Conversations",
-    description: "Casual chats over coffee or a walk in the park",
-    color: "from-amber-500 to-orange-500",
+    description: "Relaxed chats — coffee, walks, or late-night talks.",
+    color: "from-purple-500 to-pink-500"
   },
   {
     icon: Briefcase,
     title: "Career Guidance",
-    description: "Get advice from professionals in your field",
-    color: "from-blue-500 to-cyan-500",
+    description: "Gain clarity and direction from real professionals.",
+    color: "from-rose-600 to-pink-600"
   },
   {
     icon: HeartCrack,
     title: "Post-Breakup Therapy",
-    description: "Healing conversations after heartbreak",
-    color: "from-purple-500 to-pink-500",
+    description: "Healing talks and emotional rebuilding after heartbreak.",
+    color: "from-rose-500 to-purple-500"
   },
   {
     icon: Gamepad2,
     title: "Fun & Hobbies",
-    description: "Share your passions with like-minded people",
-    color: "from-green-500 to-emerald-500",
+    description: "Connect through shared interests and passions.",
+    color: "from-purple-500 to-pink-500"
   },
   {
     icon: Wind,
     title: "Stress Relief Sessions",
-    description: "Unwind and find your calm",
-    color: "from-indigo-500 to-purple-500",
-  },
+    description: "Breathe, unwind, and find your calm again.",
+    color: "from-pink-500 to-purple-500"
+  }
 ];
 
 const Categories = () => {
   return (
-    <section id="categories" className="py-20 sm:py-32 bg-white">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl sm:text-5xl mb-4 pb-4 bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
-            Explore Categories
-          </h2>
-          <p className="text-xl text-foreground/60 max-w-2xl mx-auto">
-            Find the perfect Lynker for your needs
-          </p>
-        </motion.div>
+    <section className="relative py-28 bg-gradient-to-br from-pink-50 via-rose-50 to-white">
+      <div className="text-center mb-24">
+        <h2 className="text-5xl font-extrabold bg-clip-text text-transparent bg-black py-2">
+          Explore Categories
+        </h2>
+        <p className="text-lg text-zinc-600 mt-3">
+          Find your perfect{" "}
+          <span className="font-semibold text-rose-600">Helon</span> for every
+          mood.
+        </p>
+      </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          {categories.map((category, index) => {
-            const Icon = category.icon;
+      <div className="relative max-w-4xl mx-auto">
+        <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-pink-300 via-purple-300 to-pink-300 rounded-full shadow-inner"></div>
+
+        <div className="space-y-20">
+          {categories.map((cat, index) => {
+            const Icon = cat.icon;
+            const isLeft = index % 2 === 0;
+
             return (
-              <motion.div
-                key={category.title}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ scale: 1.05 }}
-                className="group relative overflow-hidden bg-gradient-to-br from-white to-pink-50 rounded-2xl p-6 shadow-md hover:shadow-2xl transition-all border border-pink-100"
-              >
-                {/* Background Gradient on Hover */}
-                <div
-                  className={`absolute inset-0 bg-gradient-to-br ${category.color} opacity-0 group-hover:opacity-10 transition-opacity`}
-                />
+              <ScrollReveal delay={isLeft ? 0.1 : 0.2} key={index}>
+                <div className="relative flex items-center">
+                  {isLeft && (
+                    <>
+                      <div className="flex-1 pr-12 text-right">
+                        <div className="bg-white p-8 rounded-3xl shadow-xl border border-pink-100 hover:shadow-2xl transition duration-300">
+                          <h4 className="mb-2 text-xl font-semibold text-gray-800">
+                            {cat.title}
+                          </h4>
+                          <p className="text-gray-600 leading-relaxed">
+                            {cat.description}
+                          </p>
+                        </div>
+                      </div>
 
-                <div className="relative z-10">
-                  <div
-                    className={`w-14 h-14 rounded-xl bg-gradient-to-br ${category.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}
-                  >
-                    <Icon className="w-7 h-7 text-white" />
-                  </div>
-                  <h3 className="text-xl mb-2 text-foreground">
-                    {category.title}
-                  </h3>
-                  <p className="text-gray-500 text-foreground/60 mb-4">
-                    {category.description}
-                  </p>
+                      <div className="absolute left-1/2 transform -translate-x-1/2 w-14 h-14 bg-pink-700 rounded-full flex items-center justify-center shadow-lg transition transform hover:scale-110 duration-300">
+                        <Icon className="w-7 h-7 text-white" />
+                      </div>
 
-                  {/* Replaced shadcn Button with Tailwind button */}
-                  <button
-                    className="text-pink-600 cursor-pointer text-sm hover:underline p-0 h-auto font-medium inline-flex items-center transition-colors"
-                  >
-                    Find a Lynker →
-                  </button>
+                      <div className="flex-1 pl-12"></div>
+                    </>
+                  )}
+
+                  {!isLeft && (
+                    <>
+                      <div className="flex-1 pr-12"></div>
+
+                      <div className="absolute left-1/2 transform -translate-x-1/2 w-14 h-14 bg-pink-700 rounded-full flex items-center justify-center shadow-lg transition transform hover:scale-110 duration-300">
+                        <Icon className="w-7 h-7 text-white" />
+                      </div>
+
+                      <div className="flex-1 pl-12">
+                        <div className="bg-white p-8 rounded-3xl shadow-xl border border-purple-100 hover:shadow-2xl transition duration-300">
+                          <h4 className="mb-2 text-xl font-semibold text-gray-800">
+                            {cat.title}
+                          </h4>
+                          <p className="text-gray-600 leading-relaxed">
+                            {cat.description}
+                          </p>
+                        </div>
+                      </div>
+                    </>
+                  )}
                 </div>
-              </motion.div>
+              </ScrollReveal>
             );
           })}
         </div>
       </div>
     </section>
   );
-}
+};
 
-export default Categories
+export default Categories;
